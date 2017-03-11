@@ -1,0 +1,6 @@
+<div class="thumbnail book-thumbnail">
+	<div class="book-image favorites-book-image" (click)="onSelect(bookData.id)" >
+		<img *ngIf="bookData.volumeInfo.imageLinks" alt="{{bookData.volumeInfo.title}}" src="{{bookData.volumeInfo.imageLinks.smallThumbnail}}" />
+		<img *ngIf="!bookData.volumeInfo.imageLinks" alt="{{bookData.volumeInfo.title}}"/>
+	</div>
+</div>

@@ -1,0 +1,47 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Book Search App</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li><a (click)="openFavorites()">Favorites</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" [formGroup]="searchForm" (ngSubmit)="searchBooks()">
+            <div class="form-group">
+                <input type="text" class="form-control" formControlName="searchQuery" type="text" required placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
+    </div>
+</div>
+
+<div class="content">
+<div class="row">
+
+<ul class="books-listing" >
+    <li class=" col-xs-6 col-sm-4 col-md-3" *ngFor="let bookData of booksData | async | paginate: { id: 'server', itemsPerPage: itemsPerPage, currentPage: currentPage, totalItems: totalItems }">
+        <collapse-title [imageLinks]="bookData.volumeInfo.imageLinks" [volumeInfo]="bookData.volumeInfo" [saleInfo]="bookData.saleInfo" [bookId]="bookData.id"></collapse-title>
+    </li>
+</ul>
+
+</div>
+<div class="row">
+
+<div class="has-text-centered">
+    <div class="spinner" [ngClass]="{ 'hidden': !loading }"></div>
+    <pagination-controls
+        (pageChange) = "getPage($event)"
+		directionLinks = "true"
+		autohide = "false"
+        id="server" >
+    </pagination-controls>
+</div>
+</div>
+
+</div>

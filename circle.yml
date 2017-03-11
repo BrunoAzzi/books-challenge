@@ -1,0 +1,9 @@
+machine:
+    node:
+        version: 5.0.0
+
+deployment:
+    staging:
+        branch: master
+        heroku:
+            appname: books-challenge

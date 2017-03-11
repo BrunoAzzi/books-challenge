@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 class=""><button class="btn btn-primary" type="button" name="button" (click)="backToSearch()">Back to search</button></h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="favorite-listing" *ngIf="favorites.length > 0">
+                        <li *ngFor="let bookData of favoritesData" class=" col-xs-12 col-sm-6 col-md-2">
+                            <favorite-box [bookData]="bookData"></favorite-box>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <i class="loader fa fa-circle-o-notch fa-spin" style="font-size:24px" *ngIf="showLoader"></i> -->
+</div>

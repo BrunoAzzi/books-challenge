@@ -1,0 +1,52 @@
+<div class="container" *ngIf="bookData && bookData.volumeInfo && !showLoader">
+	<h1 class=""><button class="btn btn-primary" type="button" name="button" (click)="backToSearch()">Back to search</button></h1>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+  				<div class="panel-body">
+
+					<div class="media">
+						<div class="media-left">
+							<img class="book-detail-image pull-left" src="{{bookData.volumeInfo.imageLinks.smallThumbnail}}" />
+						</div>
+						<div class="media-body">
+							<div class="media-heading">
+								<h4 class="well-title">{{bookData.volumeInfo.title}}</h4>
+								<h5>{{bookData.volumeInfo.subtitle}}</h5>
+
+								<links [url]="bookData.saleInfo.buyLink" text="Buy Link"></links>
+								<links [url]="bookData.volumeInfo.previewLink" text="About"></links>
+								<links [url]="bookData.accessInfo.webReaderLink" text="Web reader link"></links>
+								<links [url]="bookData.accessInfo.acsTokenLink" text="PDF link"></links>
+								<links [url]="bookData.accessInfo.downloadLink" text="Download link"></links>
+							</div>
+							<book-info [data]="bookData.volumeInfo.averageRating" text="Average Rating"></book-info>
+							<book-info [data]="bookData.volumeInfo.ratingsCount" text="Ratings Count"></book-info>
+							<book-info [data]="bookData.pageCount" text="Page Count"></book-info>
+							<book-info [data]="bookData.volumeInfo.publishedDate" text="Published Date"></book-info>
+							<book-info [data]="bookData.volumeInfo.publisher" text="Publisher"></book-info>
+
+							<span *ngIf="bookData.volumeInfo.categories && bookData.volumeInfo.categories.length > 0">
+								<strong>Categories: </strong>
+								<span *ngFor="let category of bookData.volumeInfo.categories">
+									{{category}}{{last ? '' : ', '}}
+								</span><br />
+							</span>
+							<span>
+								<strong>Price: </strong>
+								<span *ngIf="bookData.saleInfo.saleability === 'FOR_SALE'">Rs. {{bookData.saleInfo.listPrice.amount}}</span>
+								<span *ngIf="bookData.saleInfo.saleability === 'NOT_FOR_SALE'">Not available</span>
+							</span><br /><br />
+							<p>
+								<strong>Description: </strong>
+								<span *ngIf="bookData.volumeInfo.description" [innerHTML]="bookData.volumeInfo.description"></span>
+								<span *ngIf="!bookData.volumeInfo.description">Not available</span>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

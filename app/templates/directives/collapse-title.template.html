@@ -1,0 +1,12 @@
+<div class="thumbnail book-thumbnail">
+	<div class="book-image">
+		<img *ngIf="imageLinks" src="{{imageLinks.smallThumbnail}}" />
+		<img *ngIf="!imageLinks" src="http://placehold.it/100%x100" />
+   		<i class="fa fa-star favorite-overlay" [ngClass]="[isFavorite]" (click)="toggleFavorites(bookId)"></i>
+	</div>
+  	<div class="caption">
+	  	<h4 class="book-text" [innerHtml]="volumeInfo.title | highlight : searchQuery"></h4>
+	  	<p class="book-text"><span>{{volumeInfo.publisher}}</span><br/></p>
+	  	<p><a class="btn btn-primary" role="button" (click)="onSelect(bookId)">Read more</a></p>
+  	</div>
+</div>
